@@ -256,11 +256,13 @@ end
 
 function DrawBars (cr,start_x,start_y,bar_width,bar_height,corenum,r,g,b)
   -- set colour (r,g,b,alpha)
+  -- print("Corenum:", corenum)
   cairo_set_source_rgba(cr,1,1,1,0.1)
   cairo_rectangle (cr,start_x,start_y,bar_width,-bar_height)
   cairo_fill(cr)
   cairo_set_source_rgba(cr,r,g,b,1)
   value = tonumber(conky_parse(string.format("${exec sensors | grep -o 'Core %s:        +[0-9].' | sed -r 's/%s:|[^0-9]//g'}",corenum,corenum)))
+  -- print(value)
   -- IF TEMP BARS DO NOT SHOW, try commenting the line above with '--' and uncommenting the line below by removing '--'. (Thanks to /u/IAmAFedora)
   --value = tonumber(conky_parse(string.format("${exec sensors | grep -o 'Core %s:         +[0-9].' | sed -r 's/%s:|[^0-9]//g'}",corenum,corenum)))
   -- OR THESE ONES (remove '--[[' and ']]':
@@ -326,16 +328,15 @@ end
   DrawLine(cr,398,155,0,23,4)
   DrawLine(cr,0,155,400,0,4)
   --draw cpu temp bars
-  DrawBars(cr,250,470,30,100,0,rgb_to_r_g_b(0x607d8b))
-  DrawBars(cr,290,470,30,100,1,rgb_to_r_g_b(0x3f51b5))
-  DrawBars(cr,330,470,30,100,2,rgb_to_r_g_b(0x00796b))
-  DrawBars(cr,370,470,30,100,3,rgb_to_r_g_b(0xe53935))
+  DrawBars(cr,300,470,30,100,0,rgb_to_r_g_b(0x607d8b))
+  DrawBars(cr,340,470,30,100,1,rgb_to_r_g_b(0x3f51b5))
+  -- gui DrawBars(cr,330,470,30,100,2,rgb_to_r_g_b(0x00796b))
+  -- gui DrawBars(cr,370,470,30,100,3,rgb_to_r_g_b(0xe53935))
   --draw cpu temp lines
   DrawLine(cr,0,320,348,0,4)
   DrawLine(cr,348,318,0,26,4)
   --draw mem lines
   DrawLine(cr,0,585,144,0,4)
-
 
   draw_clock_hands(cr,clock_x,clock_y)
 end

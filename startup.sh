@@ -1,9 +1,7 @@
 #!/bin/sh
 
-
-
-sleep 20
+sleep 2
 #(CORRECT WITH YOUR PATH!!)
-conky -c ~/.conky/minimalism/MangoRC &
+conky -c ~/.conky/minimalism/minimalismRC &
 
 exit
